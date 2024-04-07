@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Pressable, StyleSheet, Text, View, FlatList } from 'react-native';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { GetNetworkStatus } from '../../util/network-status';
@@ -9,11 +9,13 @@ import { getApiData } from '../../util/network-call';
 import { API_URL } from "../../util/constant";
 import { registerBackgroundFetchTask, registerBackgroundFetchTask2 } from '../../util/background-call/BackgroundTasks';
 
+import { ThemeContext } from '../../util/theme-wrapper';
+
 export default function HomePage({ navigation }) {
 
   const [status, setStatus] = useState(true);
   const [records, setRecords] = useState([]);
-
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
 
   useEffect(() => {
@@ -62,7 +64,7 @@ export default function HomePage({ navigation }) {
   }
 
   const renderItems = (item) => {
-    return (<Pressable onPress={() => navigate(item)}
+    return (<Pressable onPress={toggleTheme}
       key={item.id + '' + new Date().getTime()} style={{ width: "93%", margin: 10, padding: 10, backgroundColor: "#FFF" }}>
       <View style={{ flex: 1 }}>
         <Text style={{ fontSize: 14, color: "#000", fontWeight: "700" }}>{item.title}</Text>
@@ -72,7 +74,7 @@ export default function HomePage({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <StatusBar style="dark" />
 
       <FlatList
@@ -88,7 +90,8 @@ export default function HomePage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center"
+    alignItems: "center",
+
   },
   buttonStyle: { backgroundColor: "black", borderRadius: 16, width: "90%", marginTop: 20 },
   textStyle: { color: "#FFF", padding: 10 }
