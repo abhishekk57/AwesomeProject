@@ -30,13 +30,19 @@ const HtmlRenderer = () => {
     setShowHtml(true);
   };
 
+  const handleMessage = (event) => {
+    const newData = JSON.parse(event?.nativeEvent?.data);
+    setData(newData);
+  };
+
   const generateHtml = () => {
     return `
       <html>
         <head>
           <script>
             function handleClick(item) {
-              alert('You clicked: ' + item);
+              const newData = ['New Item 1', 'New Item 2', 'New Item 3'];
+              window.ReactNativeWebView.postMessage(JSON.stringify(newData));
             }
           </script>
         </head>
@@ -61,6 +67,7 @@ const HtmlRenderer = () => {
         <WebView
           originWhitelist={['*']}
           source={{ html: generateHtml() }}
+          onMessage={handleMessage}
         />
       )}
     </View>
