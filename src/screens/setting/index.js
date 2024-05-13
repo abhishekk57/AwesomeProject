@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, Switch } from "react-native";
 import { WebView } from 'react-native-webview';
 import PropTypes from 'prop-types';
 

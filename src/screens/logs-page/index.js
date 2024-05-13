@@ -14,7 +14,7 @@ function LogsPage() {
     }, []);
 
     const renderItems = (item) => {
-        return (<View style={{ width: "93%", height: 'auto', backgroundColor: "#FFF", margin: 10, padding: 15 }}>
+        return (<View style={{ width: "93%", height: 'auto', margin: 10, padding: 15 }}>
             <Text style={{ fontSize: 18, fontWeight: "700", padding: 10 }}>{item?.name}</Text>
         </View>)
     }

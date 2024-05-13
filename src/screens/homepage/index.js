@@ -68,7 +68,7 @@ export default function HomePage({ navigation }) {
       key={item.id + '' + new Date().getTime()} style={{ width: "93%", margin: 10, padding: 10, backgroundColor: "#FFF" }}>
       <View style={{ flex: 1 }}>
         <Text style={{ fontSize: 14, color: "#000", fontWeight: "700" }}>{item.title}</Text>
-        <Text style={{ fontSize: 11, color: "#000" }}>{item.description}</Text>
+        <Text style={{ fontSize: 11, color: theme.colors.header }}>{item.description}</Text>
       </View>
     </Pressable>)
   }

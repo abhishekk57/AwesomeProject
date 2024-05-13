@@ -40,6 +40,5 @@ LandingPage.propTypes = {
 
 const cStyle = StyleSheet.create({
     textStyle: { fontSize: 16, letterSpacing: 1, fontWeight: "700" },
-    container: { flex: 1, justifyContent: "center", alignItems: "center",
-backgroundColor:"#006899" }
+    container: { flex: 1, justifyContent: "center", alignItems: "center" }
 });
