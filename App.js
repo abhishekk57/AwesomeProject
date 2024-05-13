@@ -24,9 +24,32 @@ const App = () => {
 
 const HtmlRenderer = () => {
   const [showHtml, setShowHtml] = useState(false);
-
+ const [data, setData] = useState([]);
   const handleButtonClick = () => {
+    setData(['Item 1', 'Item 2', 'Item 3']); // here we can add dymanically data to html
     setShowHtml(true);
+  };
+
+  const generateHtml = () => {
+    return `
+      <html>
+        <head>
+          <script>
+            function handleClick(item) {
+              alert('You clicked: ' + item);
+            }
+          </script>
+        </head>
+        <body>
+          <h1>List of Items</h1>
+          <ul>
+            ${data.map((item, index) => `
+              <li key=${index} onclick="handleClick('${item}')">${item}</li>
+            `).join('')}
+          </ul>
+        </body>
+      </html>
+    `;
   };
 
   return (
@@ -37,7 +60,7 @@ const HtmlRenderer = () => {
       {showHtml && (
         <WebView
           originWhitelist={['*']}
-          source={{ html: '<h1>Hello, this is HTML content!</h1>' }}
+          source={{ html: generateHtml() }}
         />
       )}
     </View>
